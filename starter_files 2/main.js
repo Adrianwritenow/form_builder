@@ -111,14 +111,18 @@ for ( i = 0; i < formData.length; i++) {
 
   if (formData[i].options.length > 0) {
     let dropdown = document.createElement("select");
-  for (o = 0; o < formData[i].options.length; o++) {
-
+    for (o = 0; o < formData[i].options.length; o++) {
       let dropdownSelect = document.createElement("option");
 
       dropdownSelect.setAttribute("value", formData[i].options[o].value);
       dropdownSelect.innerHTML = formData[i].options[o].label;
       dropdown.appendChild(dropdownSelect);
       fields.appendChild(dropdown);
+    }
 }
+   if ( i === 5) {
+      let textBox = document.createElement("input");
+      input.style.height = "70px";
+      // input.style.verticalAlign = "60px";
   }
 }
