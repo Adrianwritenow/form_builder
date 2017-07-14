@@ -100,7 +100,11 @@ let fields = document.querySelector( "#fields" );
 
 for ( i = 0; i < formData.length; i++) {
 
-  let input = document.createElement( "input" );
+  var input = document.createElement( "input" );
+
+  if (formData[i].label != "Select Language") {
+    if (formData[i].type != 'textarea'){
+
 
   input.setAttribute("type", formData[i].type);
   input.setAttribute("placeholder", formData[i].label);
@@ -108,21 +112,36 @@ for ( i = 0; i < formData.length; i++) {
   input.setAttribute("fa-", formData[i].icon)
 
   fields.appendChild(input);
+  }
+}
 
   if (formData[i].options.length > 0) {
     let dropdown = document.createElement("select");
-    for (o = 0; o < formData[i].options.length; o++) {
-      let dropdownSelect = document.createElement("option");
+    let optionItem = `${formData[i].label}`
+    let dropdownSelect = document.createElement("option");
 
-      dropdownSelect.setAttribute("value", formData[i].options[o].value);
-      dropdownSelect.innerHTML = formData[i].options[o].label;
-      dropdown.appendChild(dropdownSelect);
+  dropdownSelect.setAttribute('selected','true');
+  dropdownSelect.setAttribute('disabled','true');
+  dropdownSelect.innerHTML = (`${optionItem}`);
+
+  dropdown.appendChild(dropdownSelect);
+
+    for (o = 0; o < formData[i].options.length; o++) {
+
+      let optionDrop = document.createElement("option");
+
+      optionDrop.setAttribute("value", formData[i].options[o].value);
+      optionDrop.innerHTML = formData[i].options[o].label;
+      dropdown.appendChild(optionDrop);
       fields.appendChild(dropdown);
     }
 }
-   if ( i === 5) {
-      let textBox = document.createElement("input");
-      input.style.height = "70px";
-      // input.style.verticalAlign = "60px";
-  }
-}
+ if (formData[i].type === 'textarea') {
+   var textarea = document.createElement('textarea');
+   textarea.setAttribute("placeholder", `${formData[i].label}`);
+
+   fields.appendChild(textarea);
+
+ }
+ }
+ console.log(fields);
