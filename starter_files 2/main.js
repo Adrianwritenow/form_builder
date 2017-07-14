@@ -36,8 +36,7 @@ let formData = [
     "label": "Select Language",
     "id": "user-language",
     "icon": "",
-    "options": [
-      {
+    "options": [{
         "label": "English",
         "value": "EN"
       },
@@ -96,35 +95,35 @@ let formData = [
 
 
 // -------- Your Code Goes Below this Line --------
-let fields = document.querySelector( "#fields" );
+let fields = document.querySelector("#fields");
 
-for ( i = 0; i < formData.length; i++) {
+for (i = 0; i < formData.length; i++) {
 
-  var input = document.createElement( "input" );
+  var input = document.createElement("input");
 
   if (formData[i].label != "Select Language") {
-    if (formData[i].type != 'textarea'){
+    if (formData[i].type != 'textarea') {
 
 
-  input.setAttribute("type", formData[i].type);
-  input.setAttribute("placeholder", formData[i].label);
-  input.setAttribute("id", formData[i].id);
-  input.setAttribute("fa-", formData[i].icon)
+      input.setAttribute("type", formData[i].type);
+      input.setAttribute("placeholder", formData[i].label);
+      input.setAttribute("id", formData[i].id);
+      input.setAttribute("fa-", formData[i].icon)
 
-  fields.appendChild(input);
+      fields.appendChild(input);
+    }
   }
-}
 
   if (formData[i].options.length > 0) {
     let dropdown = document.createElement("select");
     let optionItem = `${formData[i].label}`
     let dropdownSelect = document.createElement("option");
 
-  dropdownSelect.setAttribute('selected','true');
-  dropdownSelect.setAttribute('disabled','true');
-  dropdownSelect.innerHTML = (`${optionItem}`);
+    dropdownSelect.setAttribute('selected', 'true');
+    dropdownSelect.setAttribute('disabled', 'true');
+    dropdownSelect.innerHTML = (`${optionItem}`);
 
-  dropdown.appendChild(dropdownSelect);
+    dropdown.appendChild(dropdownSelect);
 
     for (o = 0; o < formData[i].options.length; o++) {
 
@@ -135,13 +134,13 @@ for ( i = 0; i < formData.length; i++) {
       dropdown.appendChild(optionDrop);
       fields.appendChild(dropdown);
     }
+  }
+  if (formData[i].type === 'textarea') {
+    var textarea = document.createElement('textarea');
+    textarea.setAttribute("placeholder", `${formData[i].label}`);
+
+    fields.appendChild(textarea);
+
+  }
 }
- if (formData[i].type === 'textarea') {
-   var textarea = document.createElement('textarea');
-   textarea.setAttribute("placeholder", `${formData[i].label}`);
-
-   fields.appendChild(textarea);
-
- }
- }
- console.log(fields);
+console.log(fields);
